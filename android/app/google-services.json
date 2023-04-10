@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "889157287402",
+    "project_id": "izelakkas-94669",
+    "storage_bucket": "izelakkas-94669.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:889157287402:android:2db02c010755d1f9c94693",
+        "android_client_info": {
+          "package_name": "com.izelakkas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "889157287402-m8fvfn1j3odi7rrbh14vj9c1f5aqets9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMly5oOAphq2Jkm5Y6dDVBlM3Axp1y3Hc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "889157287402-m8fvfn1j3odi7rrbh14vj9c1f5aqets9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "889157287402-qf4d6o1if7d0mci7vupibafckc4aseuv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.izelakkas"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
