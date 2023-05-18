@@ -1,12 +1,26 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:izelakkas/screen/profile/profile_screen.dart';
+import 'package:izelakkas/screen/sign_in/sign_in_screen.dart';
+import 'package:izelakkas/screen/sign_up/sign_up_screen.dart';
+import 'package:izelakkas/services/auth_service.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final AuthService _authService = AuthService();
+  final User? user = FirebaseAuth.instance.currentUser;
+
+  bool get _isLogged => user != null;
+
   final List<String> images = [
-  'https://picsum.photos/200/300',
-  'https://picsum.photos/200/301',
-  'https://picsum.photos/200/302',  
+    'https://picsum.photos/200/300',
+    'https://picsum.photos/200/301',
+    'https://picsum.photos/200/302',
   ];
 
   @override
@@ -71,51 +85,64 @@ class HomeScreen extends StatelessWidget {
               leading: Icon(Icons.person),
               title: Text('Profile'),
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ProfileScreen()),
-                );
+                if (_isLogged) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ProfileScreen()),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Please sign in to view your profile.'),
+                    ),
+                  );
+                }
               },
             ),
             ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('Settings'),
+              leading: Icon(Icons.business),
+              title: Text('Business News'),
               onTap: () {
-                // Handle onTap
+                Navigator.pushNamed(context, '/news_business');
               },
             ),
+            if (!_isLogged)
+              ListTile(
+                leading: Icon(Icons.login),
+                title: Text('Sign In'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignInScreen()),
+                  );
+                },
+              ),
+            if (!_isLogged)
+              ListTile(
+                leading: Icon(Icons.app_registration),
+                title: Text('Sign Up'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignUpScreen()),
+                  );
+                },
+              ),
+            if (_isLogged)
+              ListTile(
+                leading: Icon(Icons.logout),
+                title: Text('Log Out'),
+                onTap: () async {
+                  await _authService.signOut();
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    '/',
+                    (Route<dynamic> route) => false,
+                  );
+                },
+              ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: 0, // Currently selected index
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.category),
-            label: 'Category',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
-        onTap: (index) {
-          if (index == 3) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => ProfileScreen()),
-            );
-          }
-        },
       ),
     );
   }

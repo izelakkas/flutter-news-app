@@ -24,7 +24,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
           SizedBox(height: 32.0),
           CircleAvatar(
             radius: 64.0,
-            backgroundImage: NetworkImage('https://source.unsplash.com/400x400/?portrait'),
+            backgroundImage:
+                NetworkImage('https://source.unsplash.com/400x400/?portrait'),
           ),
           SizedBox(height: 16.0),
           Text(

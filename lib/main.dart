@@ -4,13 +4,13 @@ import 'firebase_options.dart';
 import 'package:izelakkas/screen/home/home_screen.dart';
 import 'package:izelakkas/screen/sign_in/sign_in_screen.dart';
 import 'package:izelakkas/screen/sign_up/sign_up_screen.dart';
+import 'package:izelakkas/screen/Business/news_business.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(); // Firebase'i başlatın
   runApp(MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => HomeScreen(),
         '/sign-in': (context) => SignInScreen(),
         '/sign-up': (context) => SignUpScreen(),
+        '/news_business': (context) => Business(),
       },
     );
   }
