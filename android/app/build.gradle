@@ -52,6 +52,7 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -61,6 +62,11 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+    configurations.all {
+    resolutionStrategy {
+      force 'androidx.webkit:webkit:+' // Bu satırı ekleyin
+    }
+  }
 }
 
 flutter {
@@ -71,5 +77,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation platform('com.google.firebase:firebase-bom:31.3.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+
 }
 

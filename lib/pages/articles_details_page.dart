@@ -1,5 +1,7 @@
 import 'package:izelakkas/model/article_model.dart';
 import 'package:flutter/material.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+import 'package:izelakkas/services/webView_page.dart';
 
 class ArticlePage extends StatelessWidget {
   final Article article;
@@ -23,13 +25,13 @@ class ArticlePage extends StatelessWidget {
               width: double.infinity,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: NetworkImage(article.urlToImage), fit: BoxFit.cover),
+                  image: NetworkImage(article.urlToImage),
+                  fit: BoxFit.cover,
+                ),
                 borderRadius: BorderRadius.circular(12.0),
               ),
             ),
-            SizedBox(
-              height: 8.0,
-            ),
+            SizedBox(height: 8.0),
             Container(
               padding: EdgeInsets.all(6.0),
               decoration: BoxDecoration(
@@ -43,16 +45,26 @@ class ArticlePage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
-              height: 8.0,
-            ),
+            SizedBox(height: 8.0),
             Text(
               article.description,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 16.0,
               ),
-            )
+            ),
+            SizedBox(height: 16.0),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => WebViewPage(url: article.url),
+                  ),
+                );
+              },
+              child: Text('View News Page'),
+            ),
           ],
         ),
       ),

@@ -3,7 +3,8 @@ import 'package:izelakkas/services/auth_service.dart'; // AuthService'ın bulund
 import 'package:izelakkas/screen/home/home_screen.dart'; // Ana sayfanın bulunduğu dosya
 
 class SignInScreen extends StatelessWidget {
-  final AuthService _authService = AuthService(); // AuthService sınıfını kullanmak için bir örnek oluşturuyoruz
+  final AuthService _authService =
+      AuthService(); // AuthService sınıfını kullanmak için bir örnek oluşturuyoruz
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -20,7 +21,7 @@ class SignInScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextField(
-              controller: emailController, // Email girilecek TextField'ın kontrolörü
+              controller: emailController,
               decoration: InputDecoration(
                 hintText: 'Enter your email',
                 labelText: 'Email',
@@ -28,7 +29,7 @@ class SignInScreen extends StatelessWidget {
             ),
             SizedBox(height: 16.0),
             TextField(
-              controller: passwordController, // Şifre girilecek TextField'ın kontrolörü
+              controller: passwordController,
               obscureText: true,
               decoration: InputDecoration(
                 hintText: 'Enter your password',
@@ -37,16 +38,16 @@ class SignInScreen extends StatelessWidget {
             ),
             SizedBox(height: 16.0),
             ElevatedButton(
-              onPressed: () async { // Async olarak işlem yapacağımız için onPressed() metodunu async olarak işaretliyoruz
-                bool signInSuccessful = await _authService.signInWithEmailAndPassword(
-                  email: emailController.text, // Kullanıcının girdiği email
-                  password: passwordController.text, // Kullanıcının girdiği şifre
+              onPressed: () async {
+                bool signInSuccessful =
+                    await _authService.signInWithEmailAndPassword(
+                  email: emailController.text,
+                  password: passwordController.text,
                 );
                 if (signInSuccessful) {
-                  // Giriş başarılıysa yapılacak işlemler
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()));
                 } else {
-                  // Giriş başarısızsa yapılacak işlemler
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     content: Text('Failed to sign in.'),
                   ));

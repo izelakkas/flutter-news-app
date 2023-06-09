@@ -32,8 +32,6 @@ Widget customListTile(Article article, BuildContext context) {
             height: 200.0,
             width: double.infinity,
             decoration: BoxDecoration(
-              //let's add the height
-
               image: DecorationImage(
                   image: NetworkImage(article.urlToImage), fit: BoxFit.cover),
               borderRadius: BorderRadius.circular(12.0),
