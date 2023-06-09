@@ -1,7 +1,7 @@
 # izelakkas
 
 News mobile app with flutter
-
+**Demo** http://izelakkas.com.tr/
 ## Getting Started
 
 It will work on PWA - Windows Desktop - Macos Desktop - Andorid Phone - iOS Phones.
